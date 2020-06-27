@@ -4,8 +4,12 @@ from flask_mysqldb import MySQL
 
 app=Flask(__name__)
 
+app.config['MYSQL_HOST'] = 'sql12.freemysqlhosting.net'
+app.config['MYSQL_USER'] = 'sql12351088'
+app.config['MYSQL_PASSWORD'] = 'c4wCFdDGG9'
+app.config['MYSQL_DB'] = 'sql12351088'
 
-
+mysql=MySQL(app)
 
 @app.route('/')
 def index():
