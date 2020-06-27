@@ -1,0 +1,32 @@
+Static folder contains all css,js,image..etc files
+
+app.py is main file
+
+base.html is like a index page.it will show on every oage
+
+index.html is like a dynammic . it will show the users dynammic content
+
+templates contains html file 
+
+
+configer and install method :
+
+install python3
+install pip3
+
+setup virtualenv : 
+
+download : pip3 install virtualenv
+setup to our dir : virtualenv env
+run virtualenv : . env/bin/activate
+
+install flask and flask-sqlalchemy:
+pip3 install flask flask-sqlalchemy
+
+Final run :
+python3 app.py
+
+
+
+db email : gecyrovwvesgtppisp@awdrt.com
+db password : okhospital.123$
