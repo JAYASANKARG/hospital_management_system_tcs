@@ -1,0 +1,21 @@
+
+    *body{
+      color:black;
+      
+    }
+    h2{
+      color:black;
+      text-align:center;
+      position:relative;
+    }
+    select{
+      text-align:left;
+      width:100%;
+    }
+    table{
+      margin-left: 40%;
+      margin-right:30%;
+      position:relative;
+     
+    }
+ 
