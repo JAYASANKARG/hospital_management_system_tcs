@@ -3,13 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{url_for('static',filename='css/base.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <title>Home</title>
-    {% block head %}
-
-{% endblock%}
+  
 </head>
 <body>
+    <div class ="jumbotron jumbotron-fluid">
+        <div>
+        <form action="{{url_for('logout')}}">
+            <input type="submit" value="Logout">
+        </form>
+        </div>
+
+        <div>Login As : {{msg}}</div>
+        <div class="container">
+          <h2>ABC HOSPITAL MANAGEMENT</h2>
+        <table>
+        <td>
+        <select name="pt id="pt">
+        <option value="pattient">patient</option>
+        </td>
+        <td>
+        <select name="ph id=ph">
+        <option value="pharmacy">pharmacy</option>
+        </td>
+        <td>
+        <select name="dg id=dg">    
+        <option value="Diagnostic">Diagnostic</option>
+        </td>
+        </tr>
+        </table>
+        </div>
+        </div>
     
     {% block body %}
 
