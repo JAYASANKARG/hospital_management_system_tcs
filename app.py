@@ -9,6 +9,7 @@ app.config['MYSQL_USER'] = 'sql12351088'
 app.config['MYSQL_PASSWORD'] = 'c4wCFdDGG9'
 app.config['MYSQL_DB'] = 'sql12351088'
 app.config['MYSQL_CURSORCLASS']='DictCursor'
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 mysql=MySQL(app)
 
