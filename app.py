@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request,url_for,redirect,session
+from flask import Flask,render_template,request,url_for,redirect,session,flash
 
 from flask_mysqldb import MySQL
 
@@ -62,6 +62,62 @@ def logout():
     session.pop('loggedin', None)
     session.pop('username', None)
     return redirect(url_for('login'))
+
+
+@app.route('/Patient_Reg',methods=['POST','GET'])
+def patientreg():
+    if 'loggedin' in session:
+        return render_template('patientreg.html')
+    else:
+        return redirect('/')
+
+@app.route('/create',methods=['POST','GET'])
+def create():
+    if request.method=='GET':
+        return redirect('/')
+
+    if 'loggedin' in session:
+        ssid = request.form['ssid']
+        name = request.form['name']
+        age = request.form['age']
+        date = request.form['Date']
+        bed = request.form['Bed']
+        address = request.form['Address']
+        states = request.form['states']
+        city = request.form['City']
+        cur = mysql.connection.cursor()
+        cur.execute("""INSERT INTO patient(ssn,name,age,admission_date,bed_type,address,state,city) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)""",(ssid,name,age,date,bed,address,states,city))
+        mysql.connection.commit()
+        flash('Patient creation initiated successfully')
+        return redirect('/Patient_Reg')
+    else:
+        return redirect('/')
+
+
+@app.route('/Patient_Update',methods=['POST','GET'])
+def Patient_Update():
+    if 'loggedin' in session:
+        return render_template('update.html')
+    else:
+        return redirect('/')
+
+@app.route('/create',methods=['POST','GET'])
+def update():
+    if request.method=='GET':
+        return redirect('/')
+    if 'loggedin' in session:
+        ssid = request.form['ssid']
+        name = request.form['name']
+        age = request.form['age']
+        date = request.form['Date']
+        bed = request.form['Bed']
+        address = request.form['Address']
+        states = request.form['states']
+        city = request.form['City']
+        return 
+    else:
+        return redirect('/')
+
 
 
 

@@ -21,15 +21,22 @@
           <h2>ABC HOSPITAL MANAGEMENT</h2>
         <table>
         <td>
-        <select name="pt id="pt">
-        <option value="pattient">patient</option>
+        
+        <select name="pt" id="pt" onchange="location = this.value;">
+        <option value="dashboard">Patient</option>
+        <option value="Patient_Reg">Patient Register</option>
+        <option value="select">select</option>
+        <option value="Semi sharing">semi sharing</option>
+        <option value="Single">single</option>
+        </select>
+        
         </td>
         <td>
-        <select name="ph id=ph">
+        <select name="ph" id="ph">
         <option value="pharmacy">pharmacy</option>
         </td>
         <td>
-        <select name="dg id=dg">    
+        <select name="dg" id="dg">    
         <option value="Diagnostic">Diagnostic</option>
         </td>
         </tr>

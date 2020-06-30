@@ -3,51 +3,62 @@
 {%block body %}
 <h2>Patient Registration </h2>
 
-<form action="" method="post">
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <p>{{ message }}</p>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+<form action="{{url_for('create')}}" method="POST">
 <table>
 <tbody>
 
 <tr>
 <td><label  for="pattient SSIN id">Patient SSN ID*</label></td>
-<td><input pattient SSIN id="pattient SSIN id" name="name" type="text" required/></td>
+<td><input  name="ssid" type="number" required/></td>
 </tr>
 
 <tr>
 <td><label for="Patient name">Patient Name*</label></td>
-<td><input Pattient id=" Pattient name"  name="name" type="text" required/></td>
+<td><input   name="name" type="text" required/></td>
 </tr>
 
 <tr>
 <td><label for="Pattient age">Patient Age* </label></td>
-<td><input Pattient id ="Pattient age"  Pattient name="Pattient age" type="text" required/></td>
+<td><input   name="age" type="number" required/></td>
 </tr>
 
 <tr>
 <td><label for="Date of admission">Date of Admission*</label></td>
-<td><input Pattient id="Date of admission" Pattient name="Date of admission" type="text" required/></td>
+<td><input  name="Date" type="date" required/></td>
 </tr>
 
 <tr>
 <td><label for="Type of bed">Type of bed* </label></td>
 <td>
-<select name="Bed" id=Bed>
+<select name="Bed" id=Bed required>
 <option value="select">select</option>
-<option value="Low bed">Low bed</option>
-<option value="Manual">Manual</option>
-<option value="Semi-electric">Semi-electric</option>
+<option value="General ward">General ward</option>
+<option value="Semi sharing">semi sharing</option>
+<option value="Single">single</option>
 </select>
+
 </td>
 </tr>
 
 <tr>
 <td><label for="Address">Address*</label></td>
-<td><input Pattient id ="Patient age"  Pattient name="Address" type="text" required/></td>
+<td><input id ="Patient age"  name="Address" type="text" required/></td>
 </tr>
 
 <tr>
 <td><label for="State">State*</label></td>
 <td>
-<select name="states" id="states">
+<select name="states" id="states" required>
 <option value="select">select</option>
 <option value="up">up</option>
 <option value="Tamilnadu">Tamilnadu</option>
@@ -59,7 +70,7 @@
 <tr>
 <td><label for="City">City*</label></td>
 <td>
-<select name="City" id="City">
+<select name="City" id="City" required>
 <option value="select">select</option>
 <option value="Mumbai">Mumbai</option>
 <option value="Bangalore">Bangalore</option>
@@ -75,8 +86,5 @@
 </tbody>
 </table>
 </form>
-</td>
-</tr>
-</table>
-</section>
+
 {% endblock%}

@@ -1,18 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>view patient</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
- 
-</head>
-<body>
+{% extends 'base.html' %}
   
-<h2>Patient Registration </h2>
 
-<form action="Welcome.html" method="post">
+{%block body %}
+<h2>Update Patient</h2>
+
+<form action="{{url_for('update')}}" method="post">
 <table>
 <tbody>
 
@@ -86,5 +78,5 @@
 </td>
 </tr>
 </table>
-</body>
-</html>
+
+{% endblock%}
