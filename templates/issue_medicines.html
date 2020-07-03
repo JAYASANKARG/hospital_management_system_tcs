@@ -1,19 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>medicine issued</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-</head>
-<body>
+{% extends 'base.html' %}
   
+
+
+
+{%block body %}
+<style>
+  body{
+    background-color: blue;
+  }
+  table td{
+    background-color: white;
+  }
+</style>
+
+
 <div class="container">
-  <h2 class =text-align:"Center">pharmacy</h2>
-  <table class="table table-bordered">
+  <h2 class =text-align:"Center">Pharmacy</h2>
+
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <p>{{ message }}</p>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %} 
+<style>
+  body{
+    background-color: blue;
+  }
+  li {
+    display: inline;
+  }
+</style>
+
+  <table class="table table-bordered"style="margin: 0 1%;">
     <thead class="thead-dark">
       <tr>
-        <th>Patientid</th>
+
+        <th>patient id</th>
         <th>Name</th>
         <th>Age</th>
         <th>Address</th>
@@ -22,27 +48,48 @@
     </thead>
     <tbody>
       <tr>
+        <td>
+          <form action="{{url_for('getuserdata')}}" method="POST">
+            <input  name="ssid" type="number" id="cssid"
+                {% if mess !="Not Found" and mess !=""%}
+                
+                value="{{mess['patient_id']}}"
+                
+                {% endif %}
+                required style="border: hidden;"/>
+            <input type="text" value="pharmacy" name="pageinfo" hidden>
+            <input type="submit" value="Get" hidden>
+            </form>
+
+        </td>
+        {% if mess!="" %}
+      <td>{{mess.name}}</td>
+      <td>{{mess.age}}</td>
+      <td>{{mess.address}}</td>
+      <td>{{mess.bed_type}}</td>
+        {%else%}
         <td></td>
         <td></td>
         <td></td>
         <td></td>
-        <td></td>
+
+        {% endif %}
+
+        
       </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
+   
     </tbody>
   </table>
   
 </div>
+
+
+
+{% if mess!="" %}
 <section>
 <div class="container">
     <h2 class =text-align:"Center">medicine issued</h2>
-    <table class="table">
+    <table class="table table-bordered" style="margin: 0 1%;">
       <thead class="thead-dark">
         <tr>
           <th>medicine</th>
@@ -51,37 +98,46 @@
           <th>Amount</th>
         </tr>
       </thead>
+      {% if medi!=() %}
+      
       <tbody>
+        {%for message in medi%}        
         <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td>{{message['medicine_name']}}</td>
+          <td>{{message['quantity']}}</td>
+          <td>{{message['rate']}}</td>
+          <td>{{message['rate']*message['quantity']}}</td>
         </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        
+        {%endfor%}
       </tbody>
+        {%else%}
+        <tbody>
+          <tr>
+            <p>No Medicine issued</p>
+          </tr>
+        </tbody>
+        
+{% endif %}
+      
+
       
     </table>
+    <form action="{{url_for('Issuse_Medicines')}}" method="POST" style="margin: 3% 0;">
+      <input type="text" value="{{mess['patient_id']}}" name="ssid" hidden>
+      <button  type="submit" class="btn btn-dark" >Medicine Issued</button>
+    </form>
     
-    <button  type="button" class="btn btn-dark">Medicine Issued</button>
   </div>
 </section>
+
+
+
+{% if tempmedi!="" %}
+
 <section>
     <div class="container">
         <div class="table-responsive-sm">
-        <table class="table">
+        <table class="table table-bordered" style="margin: 0 1%;">
           <thead class="thead-dark">
             <tr>
                 <th>medicine</th>
@@ -92,28 +148,45 @@
             </tr>
           </thead>
           <tbody>
+              
+              {% for message in tempmedi %}
+              
+                
+                <tr>
+                  <td>{{message['medicine_name']}}</td>
+                  <td>{{message['Quantity']}}</td>
+                  <td>{{message['rate']}}</td>
+                  <td>{{message['rate']*message['Quantity']}}</td>
+                </tr>
+                
+              
+              {% endfor %}
+              
+              
             <tr>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-            </tr>
+            
+            </tr>  
+            
+            
           </tbody>
-          <button  type="button" class="btn btn-dark">ADD</button>
+          
         </table>
         </div>
-        <button  align="center" type="button" class="btn btn-dark">update</button>
+        
       </div>
 </section>
-</body>
-</html>
+<form action="{{url_for('Issuse_Medicines')}}" method="POST" style="position: absolute;right:40%;margin:3% 0;">
+  <input type="text" value="{{mess['patient_id']}}" name="ssid" hidden>
+  <button  type="submit" class="btn btn-dark" >ADD</button>
+</form>
+
+<form action="{{url_for('Update_medicine')}}" method="POST" style="position: absolute;left:40%; margin:3% 0;">
+  <input type="text" value="{{mess['patient_id']}}" name="pid" hidden>
+
+  <button  align="center" type="submit" class="btn btn-dark" >update</button></form>
+{%endif%}
+
+
+{%endif%}
+
+{% endblock%}

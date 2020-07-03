@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+  
+
+
+
+{%block body %}
+
+
+<h2>Add Diagnostics</h2>
+
+
+<table>
+    <tbody>
+        {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <p>{{ message }}</p>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+<form action="{{url_for('Final_checkout_diagnostics')}}" method="post">
+   
+        <tr>
+        
+        <td><label  for="pattient SSIN id">Patient ID*</label></td>
+        <td><input  name="pid" value="{{id}}" type="number" readonly/></td>
+        
+        </tr>
+        
+        <tr>
+        
+        <td><label for="Patient name">Diagnostics Name*</label></td>
+        <td>
+          <select name="mediname" id="mediname" required>
+            <option hidden>select</option>
+            {% for message in medi %}
+      <option value="{{ message.test_id }}">{{ message.test_name }}</option>
+    {% endfor %}
+            
+        </select>
+          
+          </td>
+        </tr>
+        
+       
+
+<tr>       <td>
+      
+<input name="submit" type="submit" value="Add" /></td>
+</tr>
+</tbody>
+</table>
+</form>
+</td>
+</tr>
+</table>
+
+{% endblock%}

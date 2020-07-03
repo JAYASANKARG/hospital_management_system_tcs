@@ -1,23 +1,45 @@
 
     *,body{
       color:black;
+      background-color: blue  ;
       text-align:center;
-      background-color:blue;
+      font-weight: bold;
       text-align:center;
     }
     h2{
       color:black;
       text-align:center;
+      font-weight: bold;
       position:relative;
     }
     select{
       text-align:left;
       width:100%;
+      
     }
+    .jumbotron select{
+      color: black;
+      font-weight: bold;
+      border: black 3px;
+      padding: 5%;
+      margin-left: 2%;
+      margin-right:2%;
+      background-color: DodgerBlue;
+    }
+    .jumbotron table{
+      width: 50%;
+      margin: 0 25% ;
+    }
+    .jumbotron table td{
+      padding:0 2% ;
+    }
+
     table{
-      margin-left: 40%;
+      margin-left: 35%;
       margin-right:30%;
+      border: black 10px;
       position:relative;
+      text-align: left;
      
     }
  
@@ -27,6 +49,43 @@
       width:100%;
   
   }
-  table{
-      padding-left:40%;
+  input[type=submit],input[type=reset]{
+    background-color: black;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    width: 100px;
+    padding: 3%;
+    font-weight: bold;
   }
+input,select{
+  width: 100%;
+  background-color: white;
+}
+ 
+#cssid{
+  background-image: url('https://img.icons8.com/android/24/000000/search.png');
+  outline: none;
+  background-repeat: no-repeat;
+}
+.jumbotron input[type=submit]{
+  background-color: black;
+  border-radius: 10px;
+  color: white;
+  width: 7%;
+  height: 7%;
+  padding: 0;
+  border: none;
+  z-index: 1;
+  position: absolute;
+  top: 5%;
+  right: 3%;
+}
+table tr{
+ margin-top: 100px;
+}
+
+
+form{
+  background-color: blue;
+}

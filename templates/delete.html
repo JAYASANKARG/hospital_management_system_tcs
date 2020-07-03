@@ -1,83 +1,198 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>view patient</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
- 
-</head>
-<body>
-  <h2>Patient Registration </h2>
+{% extends 'base.html' %}
+  
 
-<form action="Welcome.html" method="post">
+
+
+{%block body %}
+<h2>Delete Patient</h2>
+
+
 <table>
-<tbody>
+    <tbody>
+        {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <p>{{ message }}</p>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+   
+        <tr>
+        <form action="{{url_for('getuserdata')}}" method="POST">
+        <td><label  for="pattient SSIN id">Patient ID*</label></td>
+        <td><input  name="ssid" type="number" 
+            {% if mess !="Not Found" and mess !=""%}
+            
+            value="{{mess['patient_id']}}"
+            disabled
+            {% endif %}
+            required/></td>
+            <input type="text" value="delete" name="pageinfo" hidden>
+        <td><input type="submit" value="Get"
+            {% if mess !="Not Found" and mess !=""%}
+            
+            
+            disabled
+            {% endif %}    
+            ></td>
+        </form>
+        </tr>
+        <form action="{{url_for('delete')}}" method="post">
+        <tr>
+        
+        <td><label for="Patient name">Patient Name*</label></td>
+        <td><input   name="name" type="text" 
+            {% if mess !="Not Found" and mess !=""%}
+            
+            value="{{mess['name']}}"
+    
+            {% endif %} required/></td>
+        </tr>
+        
+        <tr>
+        <td><label for="Pattient age">Patient Age* </label></td>
+        <td><input   name="age" type="number" 
+            {% if mess !="Not Found" and mess !=""%}
+            
+            value="{{mess['age']}}"
+    
+            {% endif %} required/></td>
+            
+            
+        
+        </tr>
+        
+        <tr>
+        <td><label for="Date of admission">Date of Admission*</label></td>
+        <td><input  name="Date" type="date" 
+            {% if mess !="Not Found" and mess !=""%}
+            
+            value="{{mess['admission_date']}}"
+    
+            {% endif %} required/></td>
+        </tr>
+        
+        <tr>
+        <td><label for="Type of bed">Type of bed* </label></td>
+        <td>
+        <select name="Bed" id="Bed" required >
+        <option value="select" hidden>select</option>
+        <option value="General ward" 
+        {% if mess !="Not Found" and mess !="" and mess.bed_type=="General ward"%}
+        selected
+    {% endif %}
+        
+        >General ward</option>
+
+        <option value="Semi sharing"
+        {% if mess !="Not Found" and mess !="" and mess.bed_type=="Semi sharing"%}
+        selected
+    {% endif %}
+
+        >Semi sharing</option>
+        <option value="Single"
+        {% if mess !="Not Found" and mess !="" and mess.bed_type=="Single"%}
+            selected
+        {% endif %}
+        
+       >Single</option>
+        </select>
+        
+        </td>
+        </tr>
+        
+        <tr>
+        <td><label for="Address">Address*</label></td>
+        <td><input id ="Patient age"  name="Address" type="text" 
+            {% if mess !="Not Found" and mess !=""%}
+            
+            value="{{mess['address']}}"
+    
+            {% endif %}
+            
+            
+        required /></td>
+        </tr>
+        
+        <tr>
+        <td><label for="State">State*</label></td>
+        <td>
+        <select name="states" id="states" required>
+        <option value="select" hidden>select</option>
+        <option value="up"
+        {% if mess !="Not Found" and mess !="" and mess.state=="up"%}
+            selected
+        {% endif %}
+        
+        >up</option>
+        <option value="Tamilnadu"
+        {% if mess !="Not Found" and mess !="" and mess.state == "Tamilnadu"%}
+            
+        selected
+    
+        {% endif %}
+        
+        
+        >Tamilnadu</option>
+        <option value="Mp"
+        {% if mess !="Not Found" and mess !="" and mess.state=="Mp"%}
+            
+        selected
+    
+        {% endif %}
+
+        >Mp</option>
+        </select>
+        </td>
+        </tr>
+        
+        <tr>
+        <td><label for="City">City*</label></td>
+        <td>
+        <select name="City" id="City" required>
+        <option value="select" hidden>select</option>
+        <option value="Mumbai"
+        {% if mess !="Not Found" and mess !="" and mess.city=="Mumbai"%}
+            
+        selected
+    
+        {% endif %}
+        
+        >Mumbai</option>
+        <option value="Bangalore"
+        {% if mess !="Not Found" and mess !="" and mess.city =="Bangalore" %}
+            
+        selected
+    
+        {% endif %}
+        
+        >Bangalore</option>
+        <option value="Delhi"
+        {% if mess !="Not Found" and mess !="" and mess.city =="Delhi"%}
+            
+        selected
+    
+        {% endif %}
+        
+        >Delhi</option>
+        </select>
+        </td>
+        </tr>
 
 <tr>
-<td><label  for="pattient SSIN id">Patient SSN ID*</label></td>
-<td><input pattient SSIN id="pattient SSIN id" name="name" type="text" required/></td>
-</tr>
-
-<tr>
-<td><label for="Patient name">Patient Name*</label></td>
-<td><input Pattient id=" Pattient name"  name="name" type="text" required/></td>
-</tr>
-
-<tr>
-<td><label for="Pattient age">Patient Age* </label></td>
-<td><input Pattient id ="Pattient age"  Pattient name="Pattient age" type="text" required/></td>
-</tr>
-
-<tr>
-<td><label for="Date of admission">Date of Admission*</label></td>
-<td><input Pattient id="Date of admission" Pattient name="Date of admission" type="text" required/></td>
-</tr>
-
-<tr>
-<td><label for="Type of bed">Type of bed* </label></td>
 <td>
-<select name="Bed" id=Bed>
-<option value="select">select</option>
-<option value="Low bed">Low bed</option>
-<option value="Manual">Manual</option>
-<option value="Semi-electric">Semi-electric</option>
-</select>
-</td>
-</tr>
+    <input  name="ssid" type="number" 
+    {% if mess !="Not Found" and mess !=""%}
+    
+    value="{{mess['patient_id']}}"
 
-<tr>
-<td><label for="Address">Address*</label></td>
-<td><input Pattient id ="Pattient age"  Pattient name="Address" type="text" required/></td>
-</tr>
-
-<tr>
-<td><label for="State">State*</label></td>
-<td>
-<select name="states" id="states">
-<option value="select">select</option>
-<option value="up">up</option>
-<option value="Tamilnadu">Tamilnadu</option>
-<option value="Mp">Mp</option>
-</select>
-</td>
-</tr>
-
-<tr>
-<td><label for="City">City*</label></td>
-<td>
-<select name="City" id="City">
-<option value="select">select</option>
-<option value="Mumbai">Mumbai</option>
-<option value="Bangalore">Bangalore</option>
-<option value="Delhi">Delhi</option>
-</select>
-</td>
-</tr>
-
-<tr>
-<td><input name="delete" type="delete" value="delete"/></td>
+    {% endif %}
+    
+    hidden required/>    
+<input name="submit" type="submit" value="Delete" /></td>
 </tr>
 </tbody>
 </table>
@@ -85,6 +200,5 @@
 </td>
 </tr>
 </table>
-</section>
-</body>
-</html>
+
+{% endblock%}

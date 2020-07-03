@@ -4,50 +4,73 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet"type=text/css href="{{url_for('static',filename='css/style.css')}}">
-    <link rel="stylesheet" type=text/css href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <title>Home</title>
-  
+    <style>
+        body{
+          background-color: blue;
+        }
+        
+        
+      </style>
 </head>
 <body>
- 
-    <div class ="jumbotron jumbotron-fluid">
+    <header style="background-color: lightblue;">
+    <div class ="jumbotron jumbotron-fluid" style="background-color: lightblue;">
         <div>
         <form action="{{url_for('logout')}}">
             <input type="submit" value="Logout">
         </form>
         </div>
 
-        <div>Login As : {{msg}}</div>
-        <div class="container">
-          <h2>ABC HOSPITAL MANAGEMENT</h2>
-        <table>
-        <td>
         
-        <select onchange="location = this.value;">
-        <option value="dashboard">Patient</option>
+        <div class="container" style="background-color: lightblue;">
+          <h1 style="background-color: lightblue;">ABC HOSPITAL MANAGEMENT</h1>
+        <table  class="table-striped"  >
+        <tr >
+        <td style="background-color: lightblue;">
+        
+        <select name="forma" onchange="location = this.value;">
+        <option value="dashboard" hidden>Patient</option>
         <option value="Patient_Reg">Patient Register</option>
-        <option value="select">select</option>
-        <option value="Semi sharing">semi sharing</option>
-        <option value="Single">single</option>
+        <option value="Patient_Update">Patient Update</option>
+        <option value="Patient_Delete">Patient Delete</option>
+        <option value="Patient_View">Patient View</option>
+        <option value="Patient_Search">Patient Search</option>
+        <option value="Bill">Patient Billing</option>
         </select>
         
         </td>
-        <td>
-        <select name="ph" id="ph">
-        <option value="pharmacy">pharmacy</option>
+        <td style="background-color: lightblue;">
+        <select name="forma" onchange="location = this.value;">
+        <option value="Pharmacy" hidden>Pharmacy</option>
+        <option value="Pharmacy">Issue Medicine</option>
         </td>
-        <td>
-        <select name="dg" id="dg">    
-        <option value="Diagnostic">Diagnostic</option>
+        <td style="background-color: lightblue;">
+        <select name="forma" onchange="location = this.value;">    
+        <option value="Diagnostic" hidden>Diagnostic</option>
+        <option value="Diagnostics">Add Diagnostic</option>
         </td>
         </tr>
         </table>
         </div>
         </div>
+    </header>
     
     {% block body %}
-
+      
 {% endblock%}
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class=flashes>
+      {% for message in messages %}
+        <h3 style="color: white;">{{ message }}</h3>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %} 
 </body>
 </html>

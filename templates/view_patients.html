@@ -1,70 +1,46 @@
-<html lang="en">
-<head>
-  <title>view patient</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
- 
-</head>
-<body>
+{% extends 'base.html' %}
+
+
+{%block body %}
+<style>
+  body{
+    background-color: blue;
+  }
+  table td{
+    background-color: white;
+  }
+  
+</style>
 <div class="container">
-  <h2>View Patient</h2>
-  <table class="table table-bordered">
+  <h2>View Patients</h2>
+  <table class="table table-bordered" style="margin: 0 1%;">
     <thead class="thead-dark">
       <tr>
         <th>Patient Id</th>
         <th>Name</th>
         <th>Age</th>
         <th>Address</th>
-        <th>Date of discharge</th>
+        <th>DOJ</th>
         <th>Type of Room</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
+      
+  {% for messages in mess%}
+    <tr>
+      <td>{{messages.patient_id}}</td>
+      <td>{{messages.name}}</td>
+      <td>{{messages.age}}</td>
+      <td>{{messages.address}}</td>
+      
+      <td>{{messages["admission_date"]|datetimeformat()}}</td>
+      <td>{{messages.bed_type}}</td>
+
+    </tr>
+  {% endfor %}
     </tbody>
+    
   </table>
-  
 
 
-</body>
-</html>
+{% endblock%}

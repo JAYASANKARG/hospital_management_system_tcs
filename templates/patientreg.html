@@ -13,11 +13,12 @@
   {% endif %}
 {% endwith %}
 
+
 <form action="{{url_for('create')}}" method="POST">
-<table>
+<table >
 <tbody>
 
-<tr>
+<tr >
 <td><label  for="pattient SSIN id">Patient SSN ID*</label></td>
 <td><input  name="ssid" type="number" required/></td>
 </tr>
@@ -41,10 +42,10 @@
 <td><label for="Type of bed">Type of bed* </label></td>
 <td>
 <select name="Bed" id=Bed required>
-<option value="select">select</option>
+<option value="select" hidden>select</option>
 <option value="General ward">General ward</option>
-<option value="Semi sharing">semi sharing</option>
-<option value="Single">single</option>
+<option value="Semi sharing">Semi sharing</option>
+<option value="Single">Single</option>
 </select>
 
 </td>
@@ -59,7 +60,7 @@
 <td><label for="State">State*</label></td>
 <td>
 <select name="states" id="states" required>
-<option value="select">select</option>
+<option value="select" hidden>select</option>
 <option value="up">up</option>
 <option value="Tamilnadu">Tamilnadu</option>
 <option value="Mp">Mp</option>
@@ -71,7 +72,7 @@
 <td><label for="City">City*</label></td>
 <td>
 <select name="City" id="City" required>
-<option value="select">select</option>
+<option value="select" hidden>select</option>
 <option value="Mumbai">Mumbai</option>
 <option value="Bangalore">Bangalore</option>
 <option value="Delhi">Delhi</option>
